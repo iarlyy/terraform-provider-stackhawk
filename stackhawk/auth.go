@@ -6,6 +6,10 @@ import (
 	"net/http"
 )
 
+type LoginResponse struct {
+	Token string `json:"token"`
+}
+
 func (c *Client) LogIn() (*LoginResponse, error) {
 	if c.ApiKey == "" {
 		return nil, fmt.Errorf("apiKey is not defined")

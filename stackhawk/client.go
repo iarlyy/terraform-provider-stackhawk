@@ -12,14 +12,11 @@ const ApiURL string = "https://api.stackhawk.com/api/v1"
 // Client -
 type Client struct {
 	HTTPClient *http.Client
+	UserAgent  string
 	ApiURL     string
 	ApiKey     string
 	Token      string
 	OrgId      string
-}
-
-type LoginResponse struct {
-	Token string `json:"token"`
 }
 
 func NewClient(apiUrl, orgId, apiKey *string) (*Client, error) {
@@ -36,7 +33,7 @@ func NewClient(apiUrl, orgId, apiKey *string) (*Client, error) {
 
 	ar, err := c.LogIn()
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("Login error: %s", err)
 	}
 
 	c.Token = ar.Token
@@ -47,6 +44,10 @@ func NewClient(apiUrl, orgId, apiKey *string) (*Client, error) {
 func (c *Client) doRequest(req *http.Request) ([]byte, error) {
 	if c.Token != "" {
 		req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", c.Token))
+	}
+
+	if c.UserAgent == "" {
+		req.Header.Set("User-Agent", "stackhawk-go-client")
 	}
 
 	res, err := c.HTTPClient.Do(req)

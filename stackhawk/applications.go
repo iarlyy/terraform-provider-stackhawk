@@ -91,7 +91,6 @@ func (c *Client) DeleteApplication(applicationId string) error {
 		return err
 	}
 
-	req.Header.Set("Content-Type", "application/json")
 	req.Header.Set("Accept", "application/json")
 
 	_, err = c.doRequest(req)
