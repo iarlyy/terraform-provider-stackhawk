@@ -49,7 +49,7 @@ func resourceApplication() *schema.Resource {
 }
 
 func resourceApplicationCreate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
-	log.Printf("[DEBUG] Creating application: %s", d.Get("name"))
+	log.Printf("[INFO] Creating application: %s", d.Get("name"))
 
 	client := meta.(*stackhawk.Client)
 
@@ -96,7 +96,7 @@ func resourceApplicationRead(ctx context.Context, d *schema.ResourceData, meta i
 }
 
 func resourceApplicationUpdate(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
-	log.Printf("[DEBUG] Updating application: %s", d.Get("name"))
+	log.Printf("[INFO] Updating application: %s", d.Get("name"))
 
 	client := meta.(*stackhawk.Client)
 
@@ -121,7 +121,7 @@ func resourceApplicationUpdate(ctx context.Context, d *schema.ResourceData, meta
 }
 
 func resourceApplicationDelete(ctx context.Context, d *schema.ResourceData, meta interface{}) diag.Diagnostics {
-	log.Printf("[DEBUG] Deleting application: %s", d.Get("name"))
+	log.Printf("[INFO] Deleting application: %s", d.Get("name"))
 
 	client := meta.(*stackhawk.Client)
 
