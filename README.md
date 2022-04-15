@@ -25,7 +25,7 @@ $ cd examples
 
 Set `organization_id`
 
-The, run the following command to initialize the workspace and apply the sample configuration.
+Then, run the following command to initialize the workspace and apply the sample configuration.
 
 ```shell
 $ terraform init && terraform apply
